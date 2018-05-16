@@ -45,9 +45,23 @@ A = load '/home/gopalkrishna/Desktop/pig/input/Weather_Forecast_Report_US.log' u
 B = Filter A by rate>=50;
 Dump B;
 
-A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
-SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai'; 
+A = LOAD '/home/gopalkrishna/Desktop/pig/input/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
+SPLIT A INTO P IF area == 'Pune',Q IF area == 'Hyderabad',R if area == 'Mumbai'; 
 STORE P INTO '/P1SPLIT';STORE Q INTO '/Q1SPLIT'; STORE R INTO '/R1SPLIT';
+
+ 
+A = LOAD '/home/gopalkrishna/Desktop/pig/input/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray, loc:chararray, forecast:chararray, per:chararray,rate:int);
+SPLIT A INTO P IF rate>40, Q IF rate<10; 
+STORE P INTO '/P1SPLIT1';STORE Q INTO '/Q1SPLIT1';
+
+A = LOAD '/home/gopalkrishna/Desktop/pig/input/empdata.log' using PigStorage('|') as (cid:int,cname:chararray,cheadcnt:int,cloc:chararray);
+B = FILTER A BY cloc == 'Pune';
+C = ORDER B BY cname;
+STORE B INTO 'FILTEROUT';STORE C INTO 'ORDERBYOUT';
+
+
+
+
 
 Grunt mode commands_HDFS------------------------------------------------------------------------------------------------------------
 
