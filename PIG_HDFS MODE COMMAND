@@ -4,17 +4,34 @@ LOCAL HDFS MODE PIG EXECUTION
 gopalkrishna@ubuntu:~$ pig 
 ------------------------------------------------------------------------------------------------------------
 
+A = load '/pig/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray,name:chararray,forecast:chararray,rain:chararray,rate:int);
+B = filter A by rate>70;
+Dump B;
+
+A = load '/pig/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray,name:chararray,forecast:chararray,rain:chararray,rate:int);
+B = filter A by rate>70;
+C = Order B by id;
+Dump C;
+
 A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
 B = FILTER A by sal>200000;
 STORE B INTO 'FILTER_90';
 
 A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
 B = FILTER A by area== 'Pune' or area=='Hyderabad';
-STORE B INTO 'FILTER_91';
+C = order B by area ;
+Dump C;
+
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
+B = FILTER A by area=='Pune' or area=='Hyderabad';
+C = order B by area ;
+D = limit C 5;
+Dump D;
 
 A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
 B = FILTER A by area== 'Pune' or area=='Hyderabad';
 C = ORDER B by name;
+Store C into 'C_out'
 		
 A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);																																																																																																												
 SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai'; 
