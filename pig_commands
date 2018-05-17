@@ -1,6 +1,7 @@
-Grunt mode commands_LFS
-
+LOCAL MODE PIG EXECUTION
+-------------------------------------------------------------------------------------------------------------
 gopalkrishna@ubuntu:~/Desktop/pig/input$ pig -x local 
+-------------------------------------------------------------------------------------------------------------
 
 A = LOAD 'Weather_Forecast_Report_US.log'using PigStorage('|'); 
 B = FOREACH A GENERATE $0 , $1;
@@ -10,13 +11,11 @@ A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|');
 B = FOREACH A GENERATE $0 , $1;
 STORE B INTO 'OUTPUT90';
 
-
 DUMP & STORE are also known as output generator command.
 DUMP use to display output on the console & STORE will generate output as part-m or part-r file.
 Default delimiter in the DUMP command is comma.
 Default delimiter in the STORE command is Tab Space.
 
-  
 A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|');
 B = FOREACH A GENERATE $0 , $1;
 STORE B INTO 'OUTPUT91' using PigStorage('|');
@@ -28,8 +27,6 @@ STORE B INTO 'OUTPUT93' using PigStorage('|');
 A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|') S (id:chararray, name:chararray,cond:chararray,prec:chararray,rain:int);
 B = FILTER A BY rain>=90;
 STORE B INTO 'OUTPUT94';
-
-gopalkrishna@ubuntu:~$ pig -x local -----------------------------------------------------------------------------------------------
 
 A = load '/home/gopalkrishna/Desktop/pig/input/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
 B = Filter A by area=='Hyderabad';
@@ -50,44 +47,22 @@ SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai';
 STORE P INTO 'P1SPLIT';STORE Q INTO 'Q1SPLIT'; STORE R INTO 'R1SPLIT';
 
 A = LOAD '/home/gopalkrishna/Desktop/pig/input/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray, loc:chararray, forecast:chararray, per:chararray,rate:int);
-SPLIT A INTO P IF rate>40, Q IF rate<10; 
-STORE P INTO 'P1SPLIT001';STORE Q INTO 'Q1SPLIT001';
+SPLIT A INTO P IF forecast=='Light Rain', Q IF forecast=='T-storms', R if forecast=='Cloudy' ; 
+STORE P INTO 'PSPLIT001';STORE Q INTO 'QSPLIT001';STORE R INTO 'RSPLIT001';
 
 A = LOAD '/home/gopalkrishna/Desktop/pig/input/empdata.log' using PigStorage('|') as (cid:int,cname:chararray,cheadcnt:int,cloc:chararray);
 B = FILTER A BY cloc == 'Pune';
 C = ORDER B BY cname;
 STORE B INTO 'FILTEROUT';STORE C INTO 'ORDERBYOUT';
 
-
-
-
-
-Grunt mode commands_HDFS------------------------------------------------------------------------------------------------------------
-
-A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
-B = FILTER A by sal>200000;
-STORE B INTO 'FILTER_90';
-
-
-A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
-B = FILTER A by area== 'Pune' or area=='Hyderabad';
-STORE B INTO 'FILTER_91';
-
-
-A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
-B = FILTER A by area== 'Pune' or area=='Hyderabad';
-C = ORDER B by name;
-																																																																																																																																																																																																																																																			
-
-A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
-SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai'; 
-STORE P INTO '/P1SPLIT';STORE Q INTO '/Q1SPLIT'; STORE R INTO '/R1SPLIT';
-
 FILTER V/S SPLIT
 
 Both the transformation will be used to get some result out of some condition however, when we are using filter transforamtion only one output will be generated irrespective of the number of condition what we are providing 
 where as 
 Split transformation will produce atleast provide 2 output as per the design. 
+
+ 
+
 
 
 
