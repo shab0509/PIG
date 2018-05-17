@@ -1,0 +1,21 @@
+LOCAL HDFS MODE PIG EXECUTION
+-----------------------------------------------------------------------------------------------------------
+
+gopalkrishna@ubuntu:~$ pig 
+------------------------------------------------------------------------------------------------------------
+
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
+B = FILTER A by sal>200000;
+STORE B INTO 'FILTER_90';
+
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
+B = FILTER A by area== 'Pune' or area=='Hyderabad';
+STORE B INTO 'FILTER_91';
+
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);
+B = FILTER A by area== 'Pune' or area=='Hyderabad';
+C = ORDER B by name;
+		
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);																																																																																																												
+SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai'; 
+STORE P INTO '/P1SPLIT';STORE Q INTO '/Q1SPLIT'; STORE R INTO '/R1SPLIT';
