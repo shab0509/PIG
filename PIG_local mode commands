@@ -56,22 +56,62 @@ C = ORDER B BY cname;
 STORE B INTO 'FILTEROUT';STORE C INTO 'ORDERBYOUT';
 
 FILTER V/S SPLIT
-
 Both the transformation will be used to get some result out of some condition however, when we are using filter transforamtion only one output will be generated irrespective of the number of condition what we are providing 
 where as 
 Split transformation will produce atleast provide 2 output as per the design. 
 
  
+UNION
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = union A,B;
+Dump C;
 
+CROSS
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = cross A,B;
+Dump C; / store C into 'out007';
 
+JOIN
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = join A by id ,B by id;
+Dump C; / store C into 'out007';
 
+LEFT OUTER JOIN
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id left outer,B by id ;
+Dump C; / Store C into 'out007';
 
+RIGHT OUTER JOIN
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id right,B by id ;
+Dump C; / Store C into 'out007';
 
+FULL OUTER JOIN
+A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load 'data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id full outer,B by id ;
+Dump C; / Store C into 'out007';
 
+GROUP BY
+A = load 'empdata.log' using PigStorage('\t') as (id:int, name:chararray, sal:int, loc:chararray);
+B = Group A by loc;
+Dump B;
 
+GROUP BY / PARALLEL
+A = load 'Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray,name:chararray,forecast:chararray, rain:chararray,rate:int);
+B = Group A by forecast parallel 4;
+Dump B;
 
-
-
+COGROUP BY (Same as group by but can be used for multiple tables)
+A = load 'student.log' using PigStorage(',') as (id:int, name:chararray, age:int, contact:long,loc:chararray);
+B = load 'employee.log' using PigSgtorage(',') as (id:int, name:chararray,age:int,loc:chararray);
+C = COGROUP A by age, B by age;
+Dump C;
 
 
 
