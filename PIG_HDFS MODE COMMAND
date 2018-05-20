@@ -35,3 +35,98 @@ Store C into 'C_out'
 A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int, area:chararray);																																																																																																												
 SPLIT A INTO P IF area=='Pune',Q IF area=='Hyderabad',R if area=='Mumbai'; 
 STORE P INTO '/P1SPLIT';STORE Q INTO '/Q1SPLIT'; STORE R INTO '/R1SPLIT';
+
+UNION
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = union A,B;
+Dump C;
+
+CROSS
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = cross A,B;
+Dump C; / Store C into 'out007';
+ 
+JOIN 
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id ,B by id ;
+Dump C; / Store C into 'out007';
+
+LEFT OUTER JOIN
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id left outer,B by id ;
+Dump C; / Store C into 'out007';
+
+RIGHT OUTER JOIN
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id right,B by id ;
+Dump C; / Store C into 'out007';
+
+FULL OUTER JOIN
+A = load '/pig/data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = load '/pig/data2.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+C = JOIN A by id full outer,B by id ;
+Dump C; / Store C into 'out007';
+
+GROUP BY
+A = load 'empdata.log' using PigStorage('\t') as (id:int, name:chararray, sal:int, loc :chararray);
+B = Group A by loc;
+Dump B;
+
+GROUP BY / PARALLEL
+A = load '/pig/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray,name:chararray,forecast:chararray, rain:chararray,rate:int);
+B = Group A by forecast parallel 4;
+Dump B;
+
+COGROUP BY (Same as group by but can be used for multiple tables)
+A = load '/pig/student.log' using PigStorage(',') as (id:int, name:chararray, age:int, contact:long,loc:chararray);
+B = load '/pig/employee.log' using PigSgtorage(',') as (id:int, name:chararray,age:int,loc:chararray);
+C = COGROUP A by age, B by age;
+Dump C;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
