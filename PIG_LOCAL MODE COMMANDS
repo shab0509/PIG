@@ -113,9 +113,20 @@ B = load 'employee.log' using PigSgtorage(',') as (id:int, name:chararray,age:in
 C = COGROUP A by age, B by age;
 Dump C;
 
+TOKENIZE (Divide a string into an array)
+A = load 'tokendata.log' using PigStorage('\n') as (line:chararray);
+B = foreach A generate TOKENIZE(line);
+dump B;
 
+FLATTEN 
+[FLATTEN  commands always read nested data only as i/p data.
+However flatten command is used for the unnesting of nested data.
+Flatten command will not directly read the variable which consist of the nested ouptut, Instead it will read the 
+variable of the base data on which nesting happened.]
 
-
+A = load 'tokenData.log' using PigStorage('\n') as (line:chararray);
+B = foreach A generate FLATTEN(TOKENIZE(line));
+dump B;
 
 
 
