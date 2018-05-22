@@ -133,14 +133,60 @@ B = foreach A generate FLATTEN(TOKENIZE(country));
 C = distinct B;
 dump C;
 
-Aggregate Function in pig
+AGGREGATE FUNCTION
 
 A = load 'Tsunamis_Deadlist_Information.log' using PigStorage('\t') as (date:chararray, country:chararray, number:int, loc:chararray);
 B = group A by loc;
-C = Foreach B generate group as G1, MIN(A.number);
+C = Foreach B generate group as G1, MIN(A.number),MAX(A.number),AVG(A.number);
 Dump C;
 
-a4 = foreach a2 generate group as grp, MIN(a1.NoofProducts);
+A = load 'empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int,loc:chararray);
+B = Group A all;
+C = foreach B generate group ,MAX(A.sal),MIN(A.sal);
+Dump C;
+
+A = load 'empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int,loc:chararray);
+B = Group A by loc;
+C = foreach B generate group ,MAX(A.sal);
+Dump C;
+
+A = load 'Weather_Forecast_Report_US.log' using PigStorage('|') as (name:chararray, area:chararray, forecast:chararray, rain:chararray, rate:int);
+B = Group A by forecast;
+C = foreach B generate group ,MAX(A.rate);
+Dump C;
+
+SCRIPT      [  pig -x local <scriptname.pig>  ]
+LOCATION:   /home/gopalkrishna/Desktop/pig/input/<filename.pig>
+
+1.aggmax.pig
+A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int,loc:chararray);
+B = GROUP A by loc;
+C = FOREACH B GENERATE group AS loc, MAX(A.sal),MIN(A.sal);
+DUMP C;
+
+2.Parallel.pig
+A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int ,loc:chararray);
+B = GROUP A by name parallel 3;
+STORE B INTO 'parallel_92';
+
+[3 reduce file will be generated but some of them will be empty.
+so to remove the empty file generation we will use the lazy file concept.
+shown in lazyparallel.pig]
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
 
 
 
