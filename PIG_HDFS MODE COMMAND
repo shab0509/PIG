@@ -103,13 +103,47 @@ A = load '/pig/tokenData.log' using PigStorage('\n') as (line:chararray);
 B = foreach A generate FLATTEN(TOKENIZE(line));
 dump B;
 
+AGGREGATE FUNCTION
 
+A = load '/pig/Tsunamis_Deadlist_Information.log' using PigStorage('\t') as (date:chararray, country:chararray, number:int, loc:chararray);
+B = group A by loc;
+C = Foreach B generate group as G1, MIN(A.number),MAX(A.number),AVG(A.number);
+Dump C;
 
+A = load '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int,loc:chararray);
+B = Group A all;
+C = foreach B generate group ,MAX(A.sal),MIN(A.sal);
+Dump C;
 
+A = load '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int,loc:chararray);
+B = Group A by loc;
+C = foreach B generate group ,MAX(A.sal);
+Dump C;
 
+SCRIPT      [  pig -x local <scriptname.pig>  ]
+LOCATION:   /home/gopalkrishna/Desktop/pig/input/<filename.pig>
 
+1.aggmax.pig
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int,loc:chararray);
+B = GROUP A by loc;
+C = FOREACH B GENERATE group AS loc, MAX(A.sal),MIN(A.sal);
+DUMP C;
 
+2.Parallel.pig
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int ,loc:chararray);
+B = GROUP A by name parallel 3;
+STORE B INTO 'parallel_92';
 
+[3 reduce file will be generated but some of them will be empty.
+so to remove the empty file generation we will use the lazy file concept.
+shown in lazyparallel.pig]
+
+3. lazyparallel.pig
+"set.pig.output.lazy" true;
+
+A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int ,loc:chararray);
+B = GROUP A by name parallel 8;
+STORE B INTO 'lazyparallel_93';
 
 
 
