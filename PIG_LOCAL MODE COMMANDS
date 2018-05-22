@@ -128,11 +128,19 @@ A = load 'tokenData.log' using PigStorage('\n') as (line:chararray);
 B = foreach A generate FLATTEN(TOKENIZE(line));
 dump B;
 
+A = load 'Tsunamis_Deadlist_Information.log' using PigStorage('\t') as (date:chararray, country:chararray, number:int, loc:chararray);
+B = foreach A generate FLATTEN(TOKENIZE(country));
+C = distinct B;
+dump C;
 
+Aggregate Function in pig
 
+A = load 'Tsunamis_Deadlist_Information.log' using PigStorage('\t') as (date:chararray, country:chararray, number:int, loc:chararray);
+B = group A by loc;
+C = Foreach B generate group as G1, MIN(A.number);
+Dump C;
 
-
-
+a4 = foreach a2 generate group as grp, MIN(a1.NoofProducts);
 
 
 
