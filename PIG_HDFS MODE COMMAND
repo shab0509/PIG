@@ -139,13 +139,58 @@ so to remove the empty file generation we will use the lazy file concept.
 shown in lazyparallel.pig]
 
 3. lazyparallel.pig
-"set.pig.output.lazy" true;
 
-A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int ,loc:chararray);
+In INSTALL/pig-0.15.0/conf/pig.properties  set 
+set.pig.output.lazy = true;
+
+A = LOAD '/pig/empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int ,loc:chararray);
 B = GROUP A by name parallel 8;
 STORE B INTO 'lazyparallel_93';
 
+4.datawithnull.pig
 
+A = LOAD '/pig/datawithnull.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
+B = FOREACH A GENERATE * AS completeRecord;
+C = FILTER B by completeRecord is not null;
+D = FILTER C by name is not null;
+store D into 'notnull_out002';
+
+5.Aggregate.pig 
+
+A = load '/pig/Weather_Forecast_Report_US.log' using PigStorage('|') as (name:chararray, area:chararray, forecast:chararray, rain:chararray, rate:int);
+B = Group A by forecast;
+C = foreach B generate group ,MAX(A.rate);
+Dump C;
+
+6.XML processing 
+
+A. xml001.pig
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load /pig/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
+B = order A by doc ;
+Dump B;
+
+B. xml002.pig
+
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
+B = order A BY doc;
+Dump B;
+
+C. s5.pig
+
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('name') as (doc:chararray);
+B = order A by doc asc;
+Dump B;
+
+
+7. JSon processing in pig 
+
+A = LOAD 'data.json' using JsonLoader('food:chararray, person:chararray,amount:int');
+B = Foreach A generate food,person,amount;
+C = order B by food;
+Dump C;  
 
 
 
