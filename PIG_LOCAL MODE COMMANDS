@@ -233,7 +233,13 @@ B = FOREACH A GENERATE recipe,ingredients,inventor;
 DUMP B;
  
 
+8. WORDCOUNT
 
+A = LOAD 'wcinput.txt' as (line:chararray);
+B = foreach A generate FLATTEN(TOKENIZE(line)) as word;
+C = Group B by word;
+D = foreach C generate group,COUNT(B.word);
+Dump D;
 
 
 
