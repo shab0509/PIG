@@ -244,14 +244,13 @@ Dump D;
 
 9. Parameter Passing
 
-create a file numbers.log
-
-n1.pig
-A = load '<LOCAL Pathfilename>'  as (number:int);
-B = filter A by number ==12;
+create a file p1.log
+para1.pig
+A = load '<LOCAL filename Path>'  as (number:int);
+B = filter A by number == $pass;
 Dump B;
 
-Running the scripts: pig -param dynanumber=10 -x local n1.pig
+Running the scripts: pig -param pass=10 -x local para1.pig
 
 
 
