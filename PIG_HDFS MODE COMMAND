@@ -204,7 +204,7 @@ Dump B;
 Running the file : pig -param pass=10 para1.pig
 
 
-8. Parameter Passing 2
+9. Parameter Passing 2  [This method has worked only in hdfs asl LI]
 
 create a file empdata.log
 para3.pig
