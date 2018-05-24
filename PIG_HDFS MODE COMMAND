@@ -193,17 +193,31 @@ C = order B by food;
 Dump C;  
 
 
-8. Parameter Passing
+8. Parameter Passing 1
 
-create a file numbers.log
-
-n1.pig
-A = load '<HDFS Pathoffilename>'  as (number:int);
-B = filter A by number ==12;
+create a file p1.log
+para1.pig
+A = load '<HDFS filename Path>' as (number:int);
+B = filter A by number == $pass ;
 Dump B;
 
-Running the file : pig -param dynanumber=10  n1.pig
+Running the file : pig -param pass=10 para1.pig
 
+
+8. Parameter Passing 2
+
+create a file empdata.log
+para3.pig
+A = load '$inputpath' using PigStorage('\n') as ($schemaformat);
+B = group A by ($group) ;
+Store B into 'out_024';
+
+param.properties
+inputpath = /pig/empdata.log
+schemaformat= id:int, name:chararray, sal:int, loc:chararray
+group= loc 
+
+Running the file : pig -param_file param.properties para3.pig
 
 
 
