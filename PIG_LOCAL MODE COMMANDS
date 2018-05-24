@@ -242,9 +242,14 @@ D = foreach C generate group,COUNT(B.word);
 Dump D;
 
 
+9. Parameter Passing
 
+create a file numbers.log
 
-
+n1.pig
+A = load '<Pathoffilename>'  as (number:int);
+B = filter A by number ==12;
+Dump B;
 
 
 
