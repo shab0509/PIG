@@ -198,10 +198,11 @@ Dump C;
 create a file numbers.log
 
 n1.pig
-A = load '<Pathoffilename>'  as (number:int);
+A = load '<HDFS Pathoffilename>'  as (number:int);
 B = filter A by number ==12;
 Dump B;
 
+Running the file : pig -param dynanumber=10  n1.pig
 
 
 
