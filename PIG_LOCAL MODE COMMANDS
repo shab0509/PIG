@@ -247,7 +247,8 @@ Dump D;
 create a file p1.log
 para1.pig
 A = load '<LOCAL filename Path>'  as (number:int);
-B = filter A by number == $pass;
+B = filter A by number == '$pass';    			
+--(Single quotes if chararray,if number then no need of single quotes)               
 Dump B;
 
 Running the scripts: pig -param pass=10 -x local para1.pig
