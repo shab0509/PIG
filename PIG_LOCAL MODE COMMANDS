@@ -251,6 +251,7 @@ A = load '<Pathoffilename>'  as (number:int);
 B = filter A by number ==12;
 Dump B;
 
+Running the scripts: pig -param dynanumber=10 -x local n1.pig
 
 
 
