@@ -193,6 +193,14 @@ C = order B by food;
 Dump C;  
 
 
+8. Parameter Passing
+
+create a file numbers.log
+
+n1.pig
+A = load '<Pathoffilename>'  as (number:int);
+B = filter A by number ==12;
+Dump B;
 
 
 
