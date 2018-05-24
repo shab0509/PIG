@@ -253,7 +253,11 @@ Dump B;
 Running the scripts: pig -param pass=10 -x local para1.pig
 
 
+9. DEFINE keyword in Pig:
 
+In order to assign a alias name fro any user defined function we can use define keyword in the pigscript.
+DEFINE XPath org.apachepig.pigybank.evaluation.xml.Xpath();
+In the above command XPath is alias name.
 
 
 
