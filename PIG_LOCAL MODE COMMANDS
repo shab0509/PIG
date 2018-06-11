@@ -17,12 +17,12 @@ Default delimiter in the DUMP command is comma.
 Default delimiter in the STORE command is Tab Space.
 
 A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|');
-B = FOREACH A GENERATE $0 , $1;
+B = FOREACH A GENERATE $0,$1;
 STORE B INTO 'OUTPUT91' using PigStorage('|');
 
 A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|');
 B = FOREACH A GENERATE $0 , $1, $4+10;
-STORE B INTO 'OUTPUT93' using PigStorage('|');
+STORE B INTO 'OUTPUT93' using PigStorage('-');
 
 A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|') S (id:chararray, name:chararray,cond:chararray,prec:chararray,rain:int);
 B = FILTER A BY rain>=90;
