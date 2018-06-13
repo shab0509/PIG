@@ -56,10 +56,15 @@ C = ORDER B BY cname;
 STORE B INTO 'FILTEROUT';STORE C INTO 'ORDERBYOUT';
 
 FILTER V/S SPLIT
-Both the transformation will be used to get some result out of some condition however, when we are using filter transforamtion only one output will be generated irrespective of the number of condition what we are providing 
+Both the transformation will be used to get some result out of some condition however, when we are using filter transforamtion only 
+one output will be generated irrespective of the number of condition what we are providing 
 where as 
 Split transformation will produce atleast provide 2 output as per the design. 
 
+DIAGNOSTIC OPERATOR:
+	1. describe <operator name>
+	2. illustrate <operator name>
+	3. explain <operatorname>
  
 UNION
 A = load 'data1.log' using PigStorage('\t') as (id:int, name:chararray, sal:int);
@@ -113,6 +118,12 @@ B = load 'employee.log' using PigSgtorage(',') as (id:int, name:chararray,age:in
 C = COGROUP A by age, B by age;
 Dump C;
 
+------------------------------------------------------------------------------------------------------------------------------
+Note: The GROUP and COGROUP operators are identical. Both operators work with one or more relations.
+For readability, GROUP is used in statements involving one relation and COGROUP is used in statements involving two or more relations.
+You can COGROUP up to but no more than 127 relations at a time.
+------------------------------------------------------------------------------------------------------------------------------
+
 TOKENIZE (Divide a string into an array)
 A = load 'tokendata.log' using PigStorage('\n') as (line:chararray);
 B = foreach A generate TOKENIZE(line);
@@ -133,7 +144,7 @@ B = foreach A generate FLATTEN(TOKENIZE(country));
 C = distinct B;
 dump C;
 
-AGGREGATE FUNCTION
+---AGGREGATE FUNCTION[MIN,MAX,AVG,SUM,COUNT]--------------------------------
 
 A = load 'Tsunamis_Deadlist_Information.log' using PigStorage('\t') as (date:chararray, country:chararray, number:int, loc:chararray);
 B = group A by loc;
@@ -155,7 +166,8 @@ B = Group A by forecast;
 C = foreach B generate group ,MAX(A.rate);
 Dump C;
 
-SCRIPT      [  pig -x local <scriptname.pig>  ]
+---SCRIPT [ pig -x local <scriptname.pig> ] -------------------------------------------------------------------------------------
+
 LOCATION:   /home/gopalkrishna/Desktop/pig/input/<filename.pig>
 
 1.aggmax.pig
