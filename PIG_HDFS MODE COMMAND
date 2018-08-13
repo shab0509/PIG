@@ -1,6 +1,6 @@
 LOCAL HDFS MODE PIG EXECUTION
 -----------------------------------------------------------------------------------------------------------
-gopalkrishna@ubuntu:~$ pig 
+gopalkrishna@ubuntu:~$ pig       [to enter into PIG HDFS MODE]
 ------------------------------------------------------------------------------------------------------------
 
 A = load '/pig/Weather_Forecast_Report_US.log' using PigStorage('|') as (id:chararray,name:chararray,forecast:chararray,rain:chararray,rate:int);
