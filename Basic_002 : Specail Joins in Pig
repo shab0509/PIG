@@ -5,24 +5,22 @@ Specail Joins in Pig
 
 > Joining bigger datasets with small datasets
 > load small dataset into all the machines main memory 
-> It improves the performance ,where it can be join directlt in the map job& eliminates 
+> It improves the performance ,where it can be join directly in the map job & eliminates 
   the need for the reduce job altogether
-> It works in the distributed cache in maoreduce,map join in hive.
+> It works in the distributed cache in mapreduce,map join in hive.
 Ex:
 REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'replicated';
 
 ------>Skewed Join
 
 > Data is unbalnaced or skewed around the join 
-> The cases wherein one reducer get more number of data & other reducer gets less 
-  keys in such.
-> The skewed join  in the pig handles thsi scenario,by pre-sampling the data using a preliminary
+> The cases wherein one reducer get more number of data & other reducer gets less keys in such.
+> The skewed join  in the pig handles this scenario,by pre-sampling the data using a preliminary
   MapReduce. During the pre-sampling ,Pig uses its algorithms to identifies keys which data that is skewed.
 > The skewed data will be automatically split the set across multiple reducers.A second MapReduce job is then run to 
    perform the actual one.
 Ex: 
 REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'skewed';
-
 
 ------>Merge Joins
 
