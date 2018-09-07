@@ -1,0 +1,34 @@
+Performance enhancers in PIG / PIG Optimization
+--------------------------------------------------------------------------------------------------------------
+
+> Using proper Data Types :Use of proper Data types while loading data will have advantages like 
+                            > saving space
+                            > early detection of error in code
+                            > increases the speed of data loading and Arithmetic computations.
+
+> Project and Filter early :Drop fields which are not used any more. 
+                            As this will help in reducing the processing time and will also reduce
+                            the amount of data carried to MapReduce phase by pig script.
+                            Apply FILTER before JOIN where ever possible, as this will reduce the amount of data being
+                            carried to JOIN and will increase the processing speed and reduce the time of execution. 
+                            Thus increases the efficiency of pig query.
+                            FILTER early will not be feasible in only one scenario where the FILTER is applied on large amount
+                            of data and only few data is filtered out.
+
+> Avoid splitting of operations in code:Code can be split to smaller units for clarity.
+                                        But combining one or more small steps together will improve the performance.
+
+
+> Drop Null values Before a Join:Dropping null values before a join will improve the efficiency of pig.
+ 
+> Make use of PARALLEL: Setting the number of Reducer task in pig script will improve the performance and efficiency of Pig query.
+                        The Number of Reducers can be set in 2 ways
+                        1. B = GROUP A BY ProdID PARALLEL 11;
+                        2. SET default_parallel 21;
+
+> LIMIT the output : Use LIMIT operator in case of sample output or to take the top level records.
+                     This will improve the performance and will reduce the high data flowing through the pipeline
+                     
+                     sampleData = limit ProductData 10; 
+
+> Use of DISTINCT instead of GROUP BY or GENERATE
