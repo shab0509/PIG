@@ -1,1 +1,36 @@
 
+6.XML processing
+
+A>  xml001.pig
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
+B = foreach A generate FLATTEN(REGEX_EXTRACT_ALL(doc,'<author>(.*)</author>')) as (name:chararray);
+c = order b by doc ;
+Dump B;
+
+B. xml002.pig
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
+B = order A BY doc;
+Dump B;
+
+C. s5.pig
+REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
+A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('name') as (doc:chararray);
+B = order A by doc asc;
+Dump B;
+
+
+7. JSon processing in pig 
+
+A = LOAD 'data.json' using JsonLoader('food:chararray, person:chararray,amount:int');
+B = Foreach A generate food,person,amount;
+C = order B by food;
+Dump C;  
+
+A = LOAD 'data2.json' USING JsonLoader('recipe:chararray, 
+					ingredients:{(name:chararray)},
+					inventor: (name:chararray,age:int)');
+
+B = FOREACH A GENERATE recipe,ingredients,inventor;
+DUMP B;
