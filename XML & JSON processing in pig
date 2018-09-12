@@ -1,6 +1,6 @@
 
-6.XML processing
-
+XML processing
+--------------------------------------------------------------------------------------------------------
 A>  xml001.pig
 REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
 A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
@@ -21,7 +21,8 @@ B = order A by doc asc;
 Dump B;
 
 
-7. JSon processing in pig 
+JSon processing in pig
+--------------------------------------------------------------------------------------------------------
 
 A = LOAD 'data.json' using JsonLoader('food:chararray, person:chararray,amount:int');
 B = Foreach A generate food,person,amount;
