@@ -214,7 +214,8 @@ Dump C;
 A>  xml001.pig
 REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
 A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
-B = order A by doc ;
+B = foreach A generate FLATTEN(REGEX_EXTRACT_ALL(doc,'<author>(.*)</author>')) as (name:chararray);
+c = order b by doc ;
 Dump B;
 
 B. xml002.pig
@@ -268,7 +269,7 @@ Running the scripts: pig -param pass=10 -x local para1.pig
 
 9. DEFINE keyword in Pig:
 
-In order to assign a alias name fro any user defined function we can use define keyword in the pigscript.
+In order to assign a alias name for any user defined function we can use define keyword in the pigscript.
 DEFINE XPath org.apachepig.pigybank.evaluation.xml.Xpath();
 In the above command XPath is alias name.
 
