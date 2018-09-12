@@ -209,44 +209,9 @@ B = Group A by forecast;
 C = foreach B generate group ,MAX(A.rate);
 Dump C;
 
-6.XML processing
-
-A>  xml001.pig
-REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
-A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
-B = foreach A generate FLATTEN(REGEX_EXTRACT_ALL(doc,'<author>(.*)</author>')) as (name:chararray);
-c = order b by doc ;
-Dump B;
-
-B. xml002.pig
-REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
-A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('author') as (doc:chararray);
-B = order A BY doc;
-Dump B;
-
-C. s5.pig
-REGISTER '/home/gopalkrishna/Desktop/pig/xml/piggybank.jar';
-A = load '/home/gopalkrishna/Desktop/pig/xml/technology.xml' using org.apache.pig.piggybank.storage.XMLLoader('name') as (doc:chararray);
-B = order A by doc asc;
-Dump B;
-
-
-7. JSon processing in pig 
-
-A = LOAD 'data.json' using JsonLoader('food:chararray, person:chararray,amount:int');
-B = Foreach A generate food,person,amount;
-C = order B by food;
-Dump C;  
-
-A = LOAD 'data2.json' USING JsonLoader('recipe:chararray, 
-					ingredients:{(name:chararray)},
-					inventor: (name:chararray,age:int)');
-
-B = FOREACH A GENERATE recipe,ingredients,inventor;
-DUMP B;
  
 
-8. WORDCOUNT
+6. WORDCOUNT
 
 A = LOAD 'wcinput.txt' as (line:chararray);
 B = foreach A generate FLATTEN(TOKENIZE(line)) as word;
@@ -255,7 +220,7 @@ D = foreach C generate group,COUNT(B.word);
 Dump D;
 
 
-9. Parameter Passing
+7. Parameter Passing
 
 create a file p1.log
 para1.pig
@@ -267,7 +232,7 @@ Dump B;
 Running the scripts: pig -param pass=10 -x local para1.pig
 
 
-9. DEFINE keyword in Pig:
+8. DEFINE keyword in Pig:
 
 In order to assign a alias name for any user defined function we can use define keyword in the pigscript.
 DEFINE XPath org.apachepig.pigybank.evaluation.xml.Xpath();
