@@ -1,0 +1,21 @@
+The language used to analyze data in Hadoop using Pig is known as Pig Latin.
+It is a high level data processing language which provides a rich set of data types and operators to perform various operations on the data.
+To perform a particular task Programmers using Pig, programmers need to write a Pig script using the Pig Latin language, 
+and execute them using any of the execution mechanisms (Grunt Shell, UDFs, Embedded).
+After execution, these scripts will go through a series of transformations applied by the Pig Framework, to produce the desired output.
+Internally, Apache Pig converts these scripts into a series of MapReduce jobs, and thus, it makes the programmer’s job easy. 
+The architecture of Apache Pig is shown below.
+
+ 
+Apache Pig Components
+As shown in the figure, there are various components in the Apache Pig framework. Let us take a look at the major components.
+Parser
+Initially the Pig Scripts are handled by the Parser. It checks the syntax of the script, does type checking, and other miscellaneous checks. The output of the parser will be a DAG (directed acyclic graph), which represents the Pig Latin statements and logical operators.
+In the DAG, the logical operators of the script are represented as the nodes and the data flows are represented as edges.
+Optimizer
+The logical plan (DAG) is passed to the logical optimizer, which carries out the logical optimizations such as projection and pushdown.
+Compiler
+The compiler compiles the optimized logical plan into a series of MapReduce jobs.
+Execution engine
+Finally the MapReduce jobs are submitted to Hadoop in a sorted order. Finally, these MapReduce jobs are executed on Hadoop producing the desired results.
+
