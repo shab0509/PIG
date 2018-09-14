@@ -1,0 +1,73 @@
+•	Apache Pig is one of the component of Hadoop which is an abstract layer (High Level Procedural Language) on top of the 
+  map-reduce platform.
+•	Developed @ yahoo lab at the very first time in order to address the ad hoc request. Later in 2006 was adopted by Apache from 
+  where onward it is called Apache Pig.
+•	High level processing tool for map-reduce.
+•	It is a tool/platform which is used to analyse larger sets of data representing them as data flows. 
+  Pig is generally used with Hadoop; we can perform all the data manipulation operations in Hadoop using Apache Pig.
+•	Language to express pig language transformation is called “PIG LATIN”.
+  This language provides various operators using which programmers can develop their own functions for reading, writing, and processing data.
+•	To analyze data using Apache Pig, programmers need to write scripts using Pig Latin language. 
+  All these scripts are internally converted to Map and Reduce tasks. 
+  Apache Pig has a component known as Pig Engine that accepts the Pig Latin scripts as input and converts those scripts into MapReduce jobs.
+•	PIG LATIN is not case-sensitive while UDF’s names are case sensitive.
+
+PIG:  Why do we need PIG?
+      Programmers who are not so good at Java normally used to struggle working with Hadoop, 
+      especially while performing any MapReduce tasks. Apache Pig is a boon for all such programmers.
+•	Using Pig Latin, programmers can perform MapReduce tasks easily without having to type complex codes in Java.
+•	Apache Pig uses multi-query approach, thereby reducing the length of codes. For example, an operation that would require you to type 200 lines of code (LoC) in Java can be easily done by typing as less as just 10 LoC in Apache Pig. Ultimately Apache Pig reduces the development time by almost 16 times.
+•	Pig Latin is SQL-like language and it is easy to learn Apache Pig when you are familiar with SQL.
+•	Apache Pig provides many built-in operators to support data operations like joins, filters, ordering, etc. In addition, it also provides nested data types like tuples, bags, and maps that are missing from MapReduce
+
+PIG : FEATURES
+ 
+•	 Rich set of operators − It provides many operators to perform operations like join, sort, filter, group etc.
+•	Ease of programming − Pig Latin is similar to SQL and it is easy to write a Pig script if you are good at SQL.
+•	Optimization opportunities − The tasks in Apache Pig optimize their execution automatically, so the programmers need to focus only on semantics of the language.
+•	Extensibility − Using the existing operators, users can develop their own functions to read, process, and write data.
+•	UDF’s − Pig provides the facility to create User-defined Functions in other programming languages such as Java and invoke or embed them in Pig Scripts.
+•	Handles all kinds of data − Apache Pig analyzes all kinds of data, both structured as well as unstructured. It stores the results in HDFS.
+
+Apache Pig Vs MapReduce
+--------------------------------------------------------------------------------------------
+
+Apache Pig is a data flow language  /	    MapReduce is a data processing paradigm.
+It is a high level language.	     /     MapReduce is low level and rigid.
+Performing a Join operation in Apache Pig is pretty simple.	/    It is quite difficult in MapReduce to perform a Join operation between datasets.
+Any novice programmer with a basic knowledge of SQL can work conveniently with Apache Pig.  /	Exposure to Java is must to work with MapReduce.
+Apache Pig uses multi-query approach, thereby reducing the length of the codes to a great extent. /	MapReduce will require almost 20 times more the number of lines to perform the same task.
+There is no need for compilation. On execution, every Apache Pig operator is converted internally into a MapReduce job.	/ 
+MapReduce jobs have a long compilation process.
+
+Apache Pig Vs SQL
+--------------------------------------------------------------------------------------------
+
+Pig Latin is a procedural language    /  	SQL is a declarative language.
+In Apache Pig, schema is optional. We can store data without designing a schema (values are stored as $01, $02 etc.)  /	Schema is mandatory in SQL.
+The data model in Apache Pig is nested relational.  / 	The data model used in SQL is flat relational.
+Apache Pig provides limited opportunity for Query optimization.	 /  There is more opportunity for query optimization in SQL.
+
+In addition to above differences, Apache Pig Latin −
+•	Allows splits in the pipeline.
+•	Allows developers to store data anywhere in the pipeline.
+•	Declares execution plans.
+•	Provides operators to perform ETL (Extract, Transform, and Load) functions.
+
+Apache Pig Vs Hive
+Both Apache Pig and Hive are used to create MapReduce jobs. And in some cases, Hive operates on HDFS in a similar way Apache Pig does. In the following table, we have listed a few significant points that set Apache Pig apart from Hive.
+ 
+Apache Pig uses a language called Pig Latin. It was originally created at Yahoo.  / 	Hive uses a language called HiveQL. It was originally created at Facebook.
+Pig Latin is a data flow language. / 	HiveQL is a query processing language.
+Pig Latin is a procedural language and it fits in pipeline paradigm. / 	HiveQL is a declarative language.
+Apache Pig can handle structured, unstructured, and semi-structured data.	/ Hive is mostly for structured data and semi-structured data.
+
+Applications of Apache Pig
+Apache Pig is generally used by data scientists for performing tasks involving ad-hoc processing and quick prototyping. Apache Pig is used −
+•	To process huge data sources such as web logs.
+•	To perform data processing for search platforms.
+•	To process time sensitive data loads.
+
+
+
+
