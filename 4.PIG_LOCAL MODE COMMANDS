@@ -24,7 +24,7 @@ A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|');
 B = FOREACH A GENERATE $0 , $1, $4+10;
 STORE B INTO 'OUTPUT93' using PigStorage('-');
 
-A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|') S (id:chararray, name:chararray,cond:chararray,prec:chararray,rain:int);
+A = LOAD 'Weather_Forecast_Report_US.log' using PigStorage('|') AS (id:chararray, name:chararray,cond:chararray,prec:chararray,rain:int);
 B = FILTER A BY rain>=90;
 STORE B INTO 'OUTPUT94';
 
@@ -171,7 +171,7 @@ Dump C;
 LOCATION:   /home/gopalkrishna/Desktop/pig/input/<filename.pig>
 
 1.aggmax.pig
-A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int,loc:chararray);
+A = LOAD 'empdata.log' using PigStorage('|') as (id:int,name:chararray,sal:int,loc:chararray);
 B = GROUP A by loc;
 C = FOREACH B GENERATE group AS loc, MAX(A.sal),MIN(A.sal);
 DUMP C;
@@ -190,7 +190,7 @@ shown in lazyparallel.pig]
 In INSTALL/pig-0.15.0/conf/pig.properties  set 
 set.pig.output.lazy = true;
 
-A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray,sal:int ,loc:chararray);
+A = LOAD 'empdata.log' using PigStorage('|') as (id:int, name:chararray, sal:int ,loc:chararray);
 B = GROUP A by name parallel 8;
 STORE B INTO 'lazyout020';
 
@@ -210,7 +210,6 @@ C = foreach B generate group ,MAX(A.rate);
 Dump C;
 
  
-
 6. WORDCOUNT
 
 A = LOAD 'wcinput.txt' as (line:chararray);
@@ -224,6 +223,7 @@ Dump D;
 
 create a file p1.log
 para1.pig
+
 A = load '<LOCAL filename Path>'  as (number:int);
 B = filter A by number == '$pass';    			
 --(Single quotes if chararray,if number then no need of single quotes)               
