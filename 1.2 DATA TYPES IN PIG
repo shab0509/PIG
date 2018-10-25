@@ -6,12 +6,12 @@ PIG data types can be divided into two types:
 
 Scalar Data types are as follows:
 Normal LanguageS / PIG
-int	/ int
+int / int
 String / Chararray
-Float	/ Float
+Float / Float
 Double / Double 
 Long / Long
-Boolean	 / Boolean
+Boolean	/ Boolean
 Byte / Bytearray
 Tuple /	Tuple
 
@@ -39,7 +39,8 @@ A bag can be a field in a relation; in that context, it is known as inner bag.
 Example − {Raja, 30, {9848022338, raja@gmail.com,}}
 
 Map
-A map (or data map) is a set of key-value pairs. The key needs to be of type chararray and should be unique. The value might be of any type. It is represented by ‘[]’
+A map (or data map) is a set of key-value pairs. The key needs to be of type chararray and should be unique. 
+The value might be of any type. It is represented by ‘[]’
 Example − [name#Raja, age#30]
 
 Relation
@@ -49,7 +50,8 @@ The relations in Pig Latin are unordered (there is no guarantee that tuples are 
 PIGSTORAGE:
 
 •	Loads or store relation  using field-‘delimited text format’
-•	Each line is broken into field using a configurable field delimiter (default to a tab character) to be stored in the tuple fields.
+•	Each line is broken into field using a configurable field delimiter (default to a tab character) to be stored in the 
+         tuple fields.
   It is the default storage when none is specified. 
 
 BINSTORAGE:
