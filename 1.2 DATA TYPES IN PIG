@@ -4,7 +4,8 @@ PIG data types can be divided into two types:
 
 2.	Complex Data type: contain other value.
 
-Scalar Data types are as follows:
+Scalar Data types are as follows
+------------------------------------------------------------------------
 Normal LanguageS / PIG
 int / int
 String / Chararray
@@ -16,34 +17,39 @@ Byte / Bytearray
 Tuple /	Tuple
 
 Complex Datatypes are as follows:
+------------------------------------------------------------------------
+
 The data model of Pig Latin is fully nested and it allows complex non-atomic datatypes such as map and tuple. 
 Given below is the diagrammatical representation of Pig Latin’s data model.
  
-Atom
+Atom----------
 Any single value in Pig Latin, irrespective of their data, type is known as an Atom. 
 It is stored as string and can be used as string and number. int, long, float, double, chararray, and bytearray are the atomic values of Pig. A piece of data or a simple atomic value is known as a field.
 Example − ‘raja’ or ‘30’
 
-Tuple
+Tuple----------
+
 A record that is formed by an ordered set of fields is known as a tuple, the fields can be of any type. A tuple is similar to a row in a table of RDBMS.
 Example − (Raja, 30)
 
-Bag
+Bag----------
+
 A bag is an unordered set of tuples. In other words, a collection of tuples (non-unique) is known as a bag.
 Each tuple can have any number of fields (flexible schema).
 A bag is represented by ‘{}’.
-It is similar to a table in RDBMS, but unlike a table in RDBMS, it is not necessary that every tuple contain the same number of fields or that the fields in the same position (column) have the same type.
+It is similar to a table in RDBMS, but unlike a table in RDBMS, it is not necessary that every tuple contain the same number of fields 
+or that the fields in the same position (column) have the same type.
 Example − {(Raja, 30), (Mohammad, 45)}
-
 A bag can be a field in a relation; in that context, it is known as inner bag.
 Example − {Raja, 30, {9848022338, raja@gmail.com,}}
 
-Map
+Map----------
 A map (or data map) is a set of key-value pairs. The key needs to be of type chararray and should be unique. 
 The value might be of any type. It is represented by ‘[]’
 Example − [name#Raja, age#30]
 
-Relation
+Relation----------
+
 A relation is a bag of tuples. 
 The relations in Pig Latin are unordered (there is no guarantee that tuples are processed in any particular order).
 
@@ -51,8 +57,8 @@ PIGSTORAGE:
 
 •	Loads or store relation  using field-‘delimited text format’
 •	Each line is broken into field using a configurable field delimiter (default to a tab character) to be stored in the 
-         tuple fields.
-  It is the default storage when none is specified. 
+        tuple fields.
+It is the default storage when none is specified. 
 
 BINSTORAGE:
 •	Load or store relations from or to binary files. An internal pig format is used that uses Hadoop writable objects.
