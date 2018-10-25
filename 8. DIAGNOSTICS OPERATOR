@@ -1,0 +1,14 @@
+ To verify the execution of the Load statement, you have to use the Diagnostic Operators. 
+ Pig Latin provides four different types of diagnostic operators −
+
+
+1. Dump operator         : The Dump operator is used to run the Pig Latin statements and display the results on the screen.
+                           It is generally used for debugging Purpose.
+
+2. Describe operator     : The describe operator is used to view the schema of a relation.
+
+3. Explanation operator  : The explain operator is used to display the logical, physical, and MapReduce execution plans of a relation.
+
+4. Illustration operator : The illustrate operator gives you the step-by-step execution of a sequence of statements.
+
+
