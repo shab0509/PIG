@@ -6,7 +6,8 @@ PIG data types can be divided into two types:
 
 Scalar Data types are as follows
 ------------------------------------------------------------------------
-Normal LanguageS / PIG
+Normal Languages / PIG
+------------------------------------------------------------------------
 int / int
 String / Chararray
 Float / Float
@@ -19,10 +20,10 @@ Tuple /	Tuple
 Complex Datatypes are as follows:
 ------------------------------------------------------------------------
 
-The data model of Pig Latin is fully nested and it allows complex non-atomic datatypes such as map and tuple. 
-Given below is the diagrammatical representation of Pig Latin’s data model.
- 
+The data model of Pig Latin is fully nested and it allows complex non-atomic datatypes such as atom, bag, relation, map and tuple. 
+  
 Atom----------
+
 Any single value in Pig Latin, irrespective of their data, type is known as an Atom. 
 It is stored as string and can be used as string and number. int, long, float, double, chararray, and bytearray are the atomic values of Pig. A piece of data or a simple atomic value is known as a field.
 Example − ‘raja’ or ‘30’
@@ -44,6 +45,7 @@ A bag can be a field in a relation; in that context, it is known as inner bag.
 Example − {Raja, 30, {9848022338, raja@gmail.com,}}
 
 Map----------
+
 A map (or data map) is a set of key-value pairs. The key needs to be of type chararray and should be unique. 
 The value might be of any type. It is represented by ‘[]’
 Example − [name#Raja, age#30]
@@ -52,23 +54,3 @@ Relation----------
 
 A relation is a bag of tuples. 
 The relations in Pig Latin are unordered (there is no guarantee that tuples are processed in any particular order).
-
-PIGSTORAGE:
-
-•	Loads or store relation  using field-‘delimited text format’
-•	Each line is broken into field using a configurable field delimiter (default to a tab character) to be stored in the 
-        tuple fields.
-It is the default storage when none is specified. 
-
-BINSTORAGE:
-•	Load or store relations from or to binary files. An internal pig format is used that uses Hadoop writable objects.
-•	It stores arbitrarily nested data.
-•	Used for loading intermediate result that were previously stored using it 
-
-TEXT LOADER:
-•	Loads relation from a plaintext format. Each line corresponds to a tuple whose single field is the line of text.
-	   
-
-
-
-
