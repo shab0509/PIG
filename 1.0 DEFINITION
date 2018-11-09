@@ -64,6 +64,7 @@ In addition to above differences, Apache Pig Latin −
 •	Provides operators to perform ETL (Extract, Transform, and Load) functions.
 
 Apache Pig Vs Hive
+--------------------------------------------------------------------------------------------
 Both Apache Pig and Hive are used to create MapReduce jobs. And in some cases, Hive operates on HDFS in a similar way Apache Pig does. In the following table, we have listed a few significant points that set Apache Pig apart from Hive.
  
 Apache Pig uses a language called Pig Latin. It was originally created at Yahoo.  / 	Hive uses a language called HiveQL. It was originally created at Facebook.
@@ -72,6 +73,7 @@ Pig Latin is a procedural language and it fits in pipeline paradigm. / 	HiveQL i
 Apache Pig can handle structured, unstructured, and semi-structured data.	/ Hive is mostly for structured data and semi-structured data.
 
 Applications of Apache Pig
+--------------------------------------------------------------------------------------------
 Apache Pig is generally used by data scientists for performing tasks involving ad-hoc processing and quick prototyping. Apache Pig is used −
 •	To process huge data sources such as web logs.
 •	To perform data processing for search platforms.
