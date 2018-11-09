@@ -1,48 +1,39 @@
-Apache Pig Execution Modes
+Apache Pig Execution Mode
 --------------------------------------------
 
 You can run Apache Pig in two modes, namely, Local Mode and HDFS mode.
-Local Mode ---------
+ 
+---------Local Mode
 
-In this mode, all the files are installed and run from your local host and local file system. There is no need of Hadoop or HDFS.
+In this mode, all the files are installed and run from your local host and local file system. 
+There is no need of HDFS.
 This mode is generally used for testing purpose.
 
-MapReduce Mode ---------
+---------MapReduce Mode 
 
 MapReduce mode is where we load or process the data that exists in the Hadoop File System (HDFS) using Apache Pig. 
 In this mode, whenever we execute the Pig Latin statements to process the data, a MapReduce job is invoked in the back-end to 
 perform a particular operation on the data that exists in the HDFS.
 
-Apache Pig Execution Mechanisms ---------
+---------Apache Pig Execution Mechanisms 
 
 Apache Pig scripts can be executed in three ways namely interactive mode, batch mode, and embedded mode.
 
-•	Interactive Mode (Grunt shell) − You can run Apache Pig in interactive mode using the Grunt shell. In this shell, you can enter the Pig Latin statements and get the output (using Dump operator).
-•	Batch Mode (Script) − You can run Apache Pig in Batch mode by writing the Pig Latin script in a single file with .pig extension.
-•	Embedded Mode (UDF) − Apache Pig provides the provision of defining our own functions (User Defined Functions) in programming languages such as Java, and using them in our script.
+•	Grunt shell (Interactive Mode) − You can run Apache Pig in interactive mode using the Grunt shell. 
+                                   In this shell, you can enter the Pig Latin statements and get the output (using Dump operator).
+•	Script (Batch Mode)            − You can run Apache Pig in Batch mode by writing the Pig Latin script in a single file with '.pig' extension.
+•	UDF (Embedded Mode)            − Apache Pig provides the provision of defining our own functions (User Defined Functions) in programming languages such as Java, and using them in our script.
 
-Invoking the Grunt Shell
-You can invoke the Grunt shell in a desired mode (local/MapReduce) using the −x option as shown below.
+---------Invoking the Grunt Shell
 
-Local mode	MapReduce mode
-Command −
-$ ./pig –x local	Command −
-$ ./pig -x mapreduce
+You can invoke the Grunt shell in a desired mode(local/MapReduce) using the −x option as shown below.
 
-Output −
-Output −
- 
+Local mode     : Command : $ ./pig –x local
+MapReduce mode : Command : $ ./pig -x mapreduce
+
 Either of these commands gives you the Grunt shell prompt as shown below.
 
-grunt>
-
-You can exit the Grunt shell using ‘ctrl + d’.
-
-After invoking the Grunt shell, you can execute a Pig script by directly entering the Pig Latin statements in it.
-
-grunt> customers = LOAD 'customers.txt' USING PigStorage(',');
-
-Executing Apache Pig in Batch Mode
+---------Executing Apache Pig in Batch Mode
 
 You can write an entire Pig Latin script in a file and execute it using the –x command.
 Let us suppose we have a Pig script in a file named sample_script.pig as shown below.
@@ -53,17 +44,17 @@ Dump student;
 
 Now, you can execute the script in the above file as shown below.
 
-Local mode / MapReduce mode
-$ pig -x local Sample_script.pig	/ $ pig -x mapreduce Sample_script.pig
-
-Embedded or Java mode: If we are not achieving the designed functionality by using the pre-defined built in operators of PIG. 
-Then we can go ahead with the customization i.e UDF’s  of PIG. As part of the UDF we will develop some external piece of java code
-outside of pig & we will refers(embed) same logic with the main pig script using register keyword as a first line of the program script.
+Local mode     : Command : $ pig -x local Sample_script.pig
+MapReduce mode : Command : $ pig -x mapreduce Sample_script.pig
  
+---------Executing Apache Pig in Embedded or Java mode 
 
+If we are not achieving the designed functionality by using the pre-defined built in operators of PIG. 
+Then we can go ahead with the customization i.e UDF’s  of PIG. 
+As part of the UDF we will develop some external piece of java codeoutside of pig &
+we will refers(embed) same logic with the main pig script using register keyword as a first line of the program script.
+ 
 Incorporate macros for defined functions:
-
 1.	REGISTER:  Register jar file in the pig runtime
-2.	DEFINE: creates an alias for a macro , UDF, streaming script or command specification.
-3.	IMPORT: import macros defined in separate file into a script.
-
+2.	DEFINE: creates an alias for a macro , UDF, streaming script or command specification
+3.	IMPORT: import macros defined in separate file into a script
