@@ -1,3 +1,5 @@
+
+
 •	Apache Pig is one of the component of Hadoop which is an abstract layer (High Level Procedural Language) on top of the 
   map-reduce platform.
 •	Developed @ yahoo lab at the very first time in order to address the ad hoc request. Later in 2006 was adopted by Apache from 
