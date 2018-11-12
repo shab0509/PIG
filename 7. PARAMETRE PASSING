@@ -1,1 +1,20 @@
-HI
+create a pig script <p1.pig> in local mode 
+------------------------------------------
+
+A = load 'empdata.log' using PigStorage('|') as (id:int,cname:chararray,sal:int,area:chararray);
+B = filter A by sal == $pass;
+Dump B;
+
+Running the script: pig -param pass=123000 -x local p1.pig
+
+
+create a pig script <p2.pig> in local mode 
+------------------------------------------
+A = load 'empdata.log' using PigStorage('|') as (id:int,cname:chararray,sal:int,area:chararray);
+B = filter A by area == '$pass';     
+/* If filtering is done on the basis of chararray then single quotes */
+Dump B;
+
+Running the script: pig -param pass=Pune -x local p2.pig
+
+
