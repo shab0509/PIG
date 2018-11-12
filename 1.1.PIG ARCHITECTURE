@@ -1,1 +1,9 @@
  https://www.tutorialspoint.com/apache_pig/apache_pig_architecture.htm
+
+Comments in Scripts
+
+You can include comments in Pig scripts:
+
+For multi-line comments use     /* …. */
+
+For single-line comments use    --
