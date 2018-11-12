@@ -1,3 +1,22 @@
+file : empdata.log
+--------------------------------------------------
+10101|UnitedHealthGroup|300000|Hyderabad
+10201|InfosysTechLtd|700000|Bangalore
+10301|TataConsultancyServices|320000|Chennai
+10401|CognizantTechnologiesServicesLtd|123000|Pune
+10501|WiproTechnologiesLtd|178000|Mumbai
+10101|UnitedHealthGroup|200000|Hyderabad
+10201|InfosysTechLtd|300000|Chennai
+10301|TataConsultancyServices|320000|Pune
+10401|CognizantTechnologiesServicesLtd|123000|Pune
+10501|WiproTechnologiesLtd|178000|Mumbai
+10101|UnitedHealthGroup|500000|Hyderabad
+10201|InfosysTechLtd|400000|Pune
+10301|TataConsultancyServices|320000|Chennai
+10401|CognizantTechnologiesServicesLtd|123000|Pune
+10501|WiproTechnologiesLtd|178000|Pune
+--------------------------------------------------
+
 create a pig script <p1.pig> in local mode 
 ------------------------------------------
 
@@ -20,3 +39,20 @@ Running the script: pig -param pass=Pune -x local p2.pig
 
 PARAMETERE PASSING IN HDFS MODE 
 -------------------------------
+file: empdata.log
+
+create a file <p4.pig> with below scripts:
+-----
+A = load '$inputpath' using PigStorage('\n') as ($schemaformat);
+B = group A by ($group);
+Dump B;
+
+create a file <param.properties> with below scripts
+-----
+inputpath = /pig/empdata.log
+schemaformat= id:int, name:chararray, sal:int, loc:chararray
+group= loc
+
+Running the file : pig -param_file param1.properties p4.pig
+ 
+                   
