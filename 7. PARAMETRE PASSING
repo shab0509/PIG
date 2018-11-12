@@ -18,3 +18,5 @@ Dump B;
 Running the script: pig -param pass=Pune -x local p2.pig
 
 
+PARAMETERE PASSING IN HDFS MODE 
+-------------------------------
