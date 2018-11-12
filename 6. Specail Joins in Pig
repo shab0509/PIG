@@ -1,34 +1,88 @@
 Specail Joins in Pig
 --------------------------------------------------------------------------------------------------------------------
 
------->Replicated Join
+--------------------------------------------->Replicated Join
+
+Fragment replicate join is a special type of join that works well if one or more relations are small enough to fit into main memory.
+In such cases, Pig can perform a very efficient join because all of the hadoop work is done on the map side. 
+In this type of join the large relation is followed by one or more small relations. 
+The small relations must be small enough to fit into main memory; 
+if they don't, the process fails and an error is generated.
 
 > Joining bigger datasets with small datasets
 > load small dataset into all the machines main memory 
 > It improves the performance ,where it can be join directly in the map job & eliminates 
   the need for the reduce job altogether
 > It works in the distributed cache in mapreduce,map join in hive.
-Ex:
-REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'replicated';
 
------->Skewed Join
+Ex:     REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'replicated';
 
-> Data is unbalnaced or skewed around the join 
+Conditions:
+
+Fragment replicate joins are experimental; we don't have a strong sense of how small the small relation must be to fit into memory. 
+In our tests with a simple query that involves just a JOIN,
+a relation of up to 100 M can be used if the process overall gets 1 GB of memory.
+Please share your observations and experience with us.
+In order to avoid replicated joins on large relations, 
+we fail if size of relation(s) to be replicated (in bytes) is greater than pig.join.replicated.max.bytes (default = 1GB).
+
+--------------------------------------------->Skewed Join
+
+> Data is unbalanced or skewed around the join 
 > The cases wherein one reducer get more number of data & other reducer gets less keys in such.
 > The skewed join  in the pig handles this scenario,by pre-sampling the data using a preliminary
   MapReduce. During the pre-sampling ,Pig uses its algorithms to identifies keys which data that is skewed.
 > The skewed data will be automatically split the set across multiple reducers.A second MapReduce job is then run to 
    perform the actual one.
-Ex: 
-REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'skewed';
 
------->Merge Joins
+Ex: REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'skewed';
+
+Conditions:
+
+Skewed join works with two-table inner and outer join. 
+Currently we do not support more than two tables for skewed join. 
+Specifying three-way (or more) joins will fail validation. For such joins, we rely on you to break them up into two-way joins.
+The skewed table must be specified as the left table. Pig samples on that table and determines the number of reducers per key.
+The pig.skewedjoin.reduce.memusage Java parameter specifies the fraction of heap available for the reducer to perform the join.
+A low fraction forces Pig to use more reducers but increases copying cost.
+We have seen good performance when we set this value in the range 0.1 - 0.4. 
+However, note that this is hardly an accurate range.
+Its value depends on the amount of heap available for the operation, the number of columns in the input and the skew. 
+An appropriate value is best obtained by conducting experiments to achieve a good performance. The default value is 0.5.
+Skewed join does not address (balance) uneven data distribution across reducers. 
+However, in most cases, skewed join ensures that the join will finish (however slowly) rather than fail.
+
+--------------------------------------------->Merge Joins
+
+Often user data is stored such that both inputs are already sorted on the join key. 
+In this case, it is possible to join the data in the map phase of a MapReduce job. 
+This provides a significant performance improvement compared to passing all of the data through unneeded sort and shuffle phases.
+
+Pig has implemented a merge join algorithm, or sort-merge join. 
+It works on pre-sorted data, and does not sort data for you. 
+See Conditions, below, for restrictions that apply when using this join algorithm. 
+Pig implements the merge join algorithm by selecting the left input of the join to be the input file for the map phase, 
+and the right input of the join to be the side file. 
+It then samples records from the right input to build an index that contains, 
+for each sampled record, the key(s) the filename and the offset into the file the record begins at. 
+This sampling is done in the first MapReduce job. 
+A second MapReduce job is then initiated, with the left input as its input. 
+Each map uses the index to seek to the appropriate record in the right input and begin doing the join.
 
 > Data sets you are working in joining are pre-sorted.
 > As the data is already sorted ,sort operation in the underlying Mapreduce jobs 
   is an expensive process and it can be avoided and the two sets can be joined in a efficient ways.
 > Pre Mapreduce job is run to create an index of each join key at the begining of each split block.During
   the join ,records are either matched or discarded. No safety check is done to ensure the data is indeed sorted.
-Ex: 
-REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'merge';
+
+Ex: REPJoinResult= JOIN moviedetails BY movieid,movieinfo by movieid using 'merge';
   
+--------------------------------------------->Merge-Sparse Joins
+
+Merge-Sparse join is a specialization of merge join. 
+Merge-sparse join is intended for use when one of the tables is very sparse, 
+meaning you expect only a small number of records to be matched during the join. 
+In tests this join performed well for cases where less than 1% of the data was matched in the join.
+
+C = join A by $0, B by $0 using 'merge-sparse';
+
