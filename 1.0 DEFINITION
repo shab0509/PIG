@@ -1,9 +1,10 @@
 
-
-•	Apache Pig is one of the component of Hadoop which is an abstract layer (High Level Procedural Language) on top of the 
-  map-reduce platform.
-•	Developed @ yahoo lab at the very first time in order to address the ad hoc request. Later in 2006 was adopted by Apache from 
-  where onward it is called Apache Pig.
+WHAT IS PIG?
+--------------------------------------------------------------------------------------------
+Apache Pig is one of the component of Hadoop which is an abstract layer (High Level Procedural Language) on top of the 
+map-reduce platform.Developed @ yahoo lab at the very first time in order to address the ad hoc request. 
+Later in 2006 was adopted by Apache from where onward it is called Apache Pig.
+  
 •	High level processing tool for map-reduce.
 •	It is a tool/platform which is used to analyse larger sets of data representing them as data flows. 
   Pig is generally used with Hadoop; we can perform all the data manipulation operations in Hadoop using Apache Pig.
@@ -39,6 +40,14 @@ PIG : FEATURES
                                Java and invoke or embed them in Pig Scripts.
 •	Handles all kinds of data  − Apache Pig analyzes all kinds of data, both structured as well as unstructured.
                                It stores the results in HDFS.
+
+Applications of Apache Pig
+--------------------------------------------------------------------------------------------
+Apache Pig is generally used by data scientists for performing tasks involving ad-hoc processing and quick prototyping. 
+Apache Pig is used −
+•	To process huge data sources such as web logs.
+•	To perform data processing for search platforms.
+•	To process time sensitive data loads.
 
 Apache Pig Vs MapReduce
 --------------------------------------------------------------------------------------------
@@ -89,13 +98,6 @@ In the following table, we have listed a few significant points that set Apache 
 4. Apache Pig can handle structured, unstructured, and semi-structured data.	
    Hive is mostly for structured data and semi-structured data.
 
-Applications of Apache Pig
---------------------------------------------------------------------------------------------
-Apache Pig is generally used by data scientists for performing tasks involving ad-hoc processing and quick prototyping. 
-Apache Pig is used −
-•	To process huge data sources such as web logs.
-•	To perform data processing for search platforms.
-•	To process time sensitive data loads.
 
 
 
