@@ -29,11 +29,11 @@ Apache Pig scripts can be executed in three ways namely interactive mode, batch 
 You can invoke the Grunt shell in a desired mode(local/MapReduce) using the −x option as shown below.
 
 Local mode     : Command : $ ./pig –x local
-MapReduce mode : Command : $ ./pig -x mapreduce
+HDFS mode      : Command : $ ./pig 
 
 Either of these commands gives you the Grunt shell prompt as shown below.
 
----------Executing Apache Pig in Batch Mode
+---------Executing Apache Pig in Batch (Script) Mode
 
 You can write an entire Pig Latin script in a file and execute it using the –x command.
 Let us suppose we have a Pig script in a file named sample_script.pig as shown below.
