@@ -18,8 +18,11 @@ Later in 2006 was adopted by Apache from where onward it is called Apache Pig.
 •	PIG LATIN is not case-sensitive while UDF’s names are case sensitive.
 
 PIG:  Why do we need PIG?
-      Programmers who are not so good at Java normally used to struggle working with Hadoop, 
-      especially while performing any MapReduce tasks. Apache Pig is a boon for all such programmers.
+--------------------------------------------------------------------------------------------
+     
+Programmers who are not so good at Java normally used to struggle working with Hadoop, 
+especially while performing any MapReduce tasks. Apache Pig is a boon for all such programmers.
+
 •	Using Pig Latin, programmers can perform MapReduce tasks easily without having to type complex codes in Java.
 •	Apache Pig uses multi-query approach, thereby reducing the length of codes. For example, an operation that would require you to 
   type 200 lines of code (LoC) in Java can be easily done by typing as less as just 10 LoC in Apache Pig.
@@ -85,6 +88,7 @@ In addition to above differences, Apache Pig Latin −
 
 Apache Pig Vs Hive
 --------------------------------------------------------------------------------------------
+
 Both Apache Pig and Hive are used to create MapReduce jobs. 
 And in some cases, Hive operates on HDFS in a similar way Apache Pig does. 
 In the following table, we have listed a few significant points that set Apache Pig apart from Hive.
