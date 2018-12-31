@@ -1,13 +1,13 @@
 PIG data types can be divided into two types:
 
 1.	Scalar Data type: contains a single value.
-
 2.	Complex Data type: contain other value.
 
 Scalar Data types are as follows
 ------------------------------------------------------------------------
+
 Normal Languages / PIG
-------------------------------------------------------------------------
+-----------------------
 int / int
 String / Chararray
 Float / Float
