@@ -31,11 +31,14 @@ Example − ‘raja’ or ‘30’
 
 Tuple----------
 
+() Tuple Constructor Operator
 A record that is formed by an ordered set of fields is known as a tuple, the fields can be of any type. A tuple is similar to a row in a table of RDBMS.
 Example − (Raja, 30)
 
+
 Bag----------
 
+{} Bag Constructor Operator
 A bag is an unordered set of tuples. In other words, a collection of tuples (non-unique) is known as a bag.
 Each tuple can have any number of fields (flexible schema).
 A bag is represented by ‘{}’.
@@ -45,8 +48,10 @@ Example − {(Raja, 30), (Mohammad, 45)}
 A bag can be a field in a relation; in that context, it is known as inner bag.
 Example − {Raja, 30, {9848022338, raja@gmail.com,}}
 
+
 Map----------
 
+[] Map Constructor Operator
 A map (or data map) is a set of key-value pairs. The key needs to be of type chararray and should be unique. 
 The value might be of any type. It is represented by ‘[]’
 Example − [name#Raja, age#30]
