@@ -1,6 +1,11 @@
+PIG Architecture 
+----------------------------
 https://www.tutorialspoint.com/apache_pig/apache_pig_architecture.htm
+https://data-flair.training/blogs/apache-pig-architecture/
+
 
 Comments in Scripts:
+----------------------------
 
----------->    For multi-line comments use     /* …. */
----------->    For single-line comments use    --
+->    For multi-line comments use     /* …. */
+->    For single-line comments use    --
