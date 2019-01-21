@@ -1,0 +1,80 @@
+PROS
+-----------------------
+
+i. Less development time
+
+It consumes less time while development. Hence, we can say, it is one of the major advantages. 
+Especially considering vanilla MapReduce jobs’ complexity, time-spent, and maintenance of the programs.
+
+ii. Easy to learn
+Well, the Learning curve of Apache Pig is not steep. That implies anyone who does not know how to write vanilla MapReduce 
+or SQL for that matter could pick up and can write MapReduce jobs.
+
+iii. Procedural language
+Apache Pig is a procedural language, not declarative, unlike SQL. Hence, we can easily follow the commands. 
+Also, offers better expressiveness in the transformation of data in every step. 
+Moreover, while we compare it to vanilla MapReduce, it is much more like the English language
+In addition, it is very concise and unlike Java but more like Python.
+
+iv. Dataflow
+It is a data flow language. 
+That means here everything is about data even though we sacrifice control structures like for loop or if structures. 
+By “this data and because of data”, data transformation is a first class citizen. 
+Also, we cannot create for loops without data. We need to always transform and manipulate data.
+
+v. Easy to control execution
+We can control the execution of every step because it is procedural in nature. 
+Also, a benefit that it is, straightforward. That implies we can write our own UDF(User Defined Function) and 
+inject in one specific part in the pipeline.
+
+vi. UDFs
+It is possible to write our own UDFs.  
+
+vii. Lazy evaluation
+As per its name, it does not get evaluated unless you do not produce an output file or does not output any message. 
+It is a benefit of the logical plan. 
+That it could optimize the program beginning to end and optimizer could produce an efficient plan to execute.
+
+viii. Usage of Hadoop features
+Through Pig, we can enjoy everything that Hadoop offers. 
+Such as parallelization, fault-tolerance with many relational database features.
+
+ix. Effective for unstructured
+Pig is quite effective for unstructured and messy large datasets. 
+Basically, Pig is one of the best tools to make the large unstructured data to structured.
+
+x. Base pipeline
+
+Here, we have UDFs which we want to parallelize and utilize for large amounts of data.
+That means we can use Pig as a base pipeline where it does the hard work. For that, we just apply our UDF in the step that we want.
+
+CONS 
+------------------------------
+
+i. Errors of Pig
+Errors that Pig produces due to UDFs(Python) are not helpful at all. 
+At times, while something goes wrong, it just gives the error such as exec error in UDF, 
+even if the problem is related to syntax or the type error, it lets alone a logical one.
+
+ii. Not mature
+Pig is still in the development, even if it has been around for quite some time.
+
+iii. Support
+Generally, Google and StackOverflow do not lead good solutions for the problems.
+
+iv. Implicit data schema
+In Apache Pig, Data Schema is not enforced explicitly but implicitly. 
+It is also a huge disadvantage. As it does not enforce an explicit schema, 
+sometimes one data structure goes byte array, which is a “raw” data type. 
+It is up to the time we coerce the fields even the strings, 
+they turn byte array without notice. It leads to propagation for other steps of the data processing.
+
+v. Minor one
+Here is an absence of good IDE or plugin for Vim. That offers more functionality than syntax completion to write the pig scripts.
+
+vi. Delay in execution
+Unless either we dump or store an intermediate or final result the commands are not executed. 
+This increases the iteration between debug and resolve the issue
+
+
+
