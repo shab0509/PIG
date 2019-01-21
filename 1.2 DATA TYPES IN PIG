@@ -2,6 +2,7 @@ PIG data types can be divided into two types:
 
 1.	Scalar Data type: contains a single value.
 2.	Complex Data type: contain other value.
+3.  Null Values 
 
 Scalar Data types are as follows
 ------------------------------------------------------------------------
@@ -54,3 +55,12 @@ Relation----------
 
 A relation is a bag of tuples. 
 The relations in Pig Latin are unordered (there is no guarantee that tuples are processed in any particular order).
+
+Null Values
+------------------------------------------------------------------------
+
+It is possible that values for all the above data types can be NULL. 
+However, SQL and Pig treat null values in the same way.
+On defining a null Value, It can be an unknown value or a non-existent value. 
+Moreover, we use it as a placeholder for optional values. 
+Either, These nulls can be the result of an operation or it can occur naturally.
