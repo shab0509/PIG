@@ -68,24 +68,6 @@ Apache Pig Vs MapReduce
 6. There is no need for compilation. On execution, every Apache Pig operator is converted internally into a MapReduce job.	 
    MapReduce jobs have a long compilation process.
 
-Apache Pig Vs SQL
---------------------------------------------------------------------------------------------
-
-1. Pig Latin is a procedural language      	
-   SQL is a declarative language.
-2. In Apache Pig, schema is optional. We can store data without designing a schema (values are stored as $01, $02 etc.)  
-   Schema is mandatory in SQL.
-3. The data model in Apache Pig is nested relational.  
-   The data model used in SQL is flat relational.
-4. Apache Pig provides limited opportunity for Query optimization.	 
-   There is more opportunity for query optimization in SQL.
-
-In addition to above differences, Apache Pig Latin −
-•	Allows splits in the pipeline.
-•	Allows developers to store data anywhere in the pipeline.
-•	Declares execution plans.
-•	Provides operators to perform ETL (Extract, Transform, and Load) functions.
-
 Apache Pig Vs Hive
 --------------------------------------------------------------------------------------------
 
@@ -102,7 +84,11 @@ In the following table, we have listed a few significant points that set Apache 
 4. Apache Pig can handle structured, unstructured, and semi-structured data.	
    Hive is mostly for structured data and semi-structured data.
 
-
+In addition to above differences, Apache Pig Latin −
+•	Allows splits in the pipeline.
+•	Allows developers to store data anywhere in the pipeline.
+•	Declares execution plans.
+•	Provides operators to perform ETL (Extract, Transform, and Load) functions.
 
 
 
